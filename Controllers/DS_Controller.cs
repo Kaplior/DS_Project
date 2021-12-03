@@ -22,7 +22,7 @@ namespace DS.Controllers
         public ActionResult Index(string sortOrder)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.DateSortParm = sortOrder == "Num" ? "Num_desc" : "Num";
             var students = from s in _context.DS_book
                            select s;
             switch (sortOrder)
@@ -30,10 +30,10 @@ namespace DS.Controllers
                 case "name_desc":
                     students = students.OrderByDescending(s => s.Name);
                     break;
-                case "Date":
+                case "Num":
                     students = students.OrderBy(s => s.Comp_num);
                     break;
-                case "date_desc":
+                case "Num_desc":
                     students = students.OrderByDescending(s => s.Comp_num);
                     break;
                 default:
